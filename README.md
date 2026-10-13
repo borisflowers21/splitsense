@@ -5,6 +5,9 @@ A mobile rowing journal for athletes, built with Expo and React Native for iOS a
 ## What works
 
 - Opening welcome screen with Log In, Create Account, Google, and Apple options.
+- Polished rowing illustration, floating bottom navigation, improved cards, focus states, and chart scale labels.
+- Animated screen entrances, spring button presses, and a gently floating rowing illustration. Motion respects the device's reduced-motion preference.
+- Development-only DEV toolbar: Next page advances through the preview; the page picker jumps to Welcome, Log In, Create Account, Home, Training Log, Progress, Profile, or Log a Workout. It bypasses only the demo flow and never changes stored workouts. The toolbar is omitted from production builds.
 - Demo email/password forms, password visibility toggle, and clearly marked social sign-in previews. No authentication details are saved or transmitted; these screens do not create accounts or protect local data. Use Explore the demo to enter the app, or Return to sign-in in Profile.
 
 - Home dashboard with weekly sessions, distance, training time, and a personal goal.
