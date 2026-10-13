@@ -4,6 +4,9 @@ A mobile rowing journal for athletes, built with Expo and React Native for iOS a
 
 ## What works
 
+- Opening welcome screen with Log In, Create Account, Google, and Apple options.
+- Demo email/password forms, password visibility toggle, and clearly marked social sign-in previews. No authentication details are saved or transmitted; these screens do not create accounts or protect local data. Use Explore the demo to enter the app, or Return to sign-in in Profile.
+
 - Home dashboard with weekly sessions, distance, training time, and a personal goal.
 - Erg, water, and strength workout logging with date, duration, effort, and notes.
 - Automatic average split per 500 m, optional stroke rate, and water-session BoatFeel ratings.
