@@ -51,6 +51,8 @@ Example sessions are optional and visibly marked. Remove them in Profile; person
 
 ## Next milestones
 
+Dependency audit on the starter reports 22 inherited findings (15 high, 7 moderate), in build-tool dependency chains including braces, node-forge, and uuid. Compatible automatic fixes were applied; remaining fixes suggested by npm would downgrade Expo or React Native incompatibly. Review these upstream advisories and update compatible packages before production release. No claim of production security readiness is made for this prototype.
+
 1. Test on physical iPhone and Android devices with athletes.
 2. Add workout editing and data export.
 3. Add accounts and private cloud backup.
