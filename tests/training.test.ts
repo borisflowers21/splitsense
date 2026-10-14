@@ -33,3 +33,34 @@ test('storage round-trip and invalid data rejection', () => {
   assert.throws(() => decodeData(JSON.stringify({ ...emptyData, version: 2 })));
   assert.throws(() => decodeData(JSON.stringify({ ...emptyData, workouts: [{ seconds: -5 }] })));
 });
+
+test('old storage gains an empty plan without changing workouts or profile', () => {
+  const legacy = { version: 1, workouts: demoWorkouts(), profile: { name: 'Rower', club: '', goal: '' } };
+  assert.deepEqual(decodeData(JSON.stringify(legacy)), { ...legacy, plans: [] });
+  assert.throws(() => decodeData(JSON.stringify({ ...emptyData, plans: [{ id: 'p', date: '2026-02-30', templateId: 'steady' }] })));
+  assert.throws(() => decodeData(JSON.stringify({ ...emptyData, plans: [{ id: 'p', date: '2026-10-13', templateId: 'unknown' }] })));
+});
+
+test('pace calculations match Concept2 example and reject invalid inputs', async () => {
+  const { ergWatts, targetTime } = await import('../src/training.ts');
+  assert.equal(targetTime(2000, 110), 440);
+  assert.equal(Math.round(ergWatts(120)!), 203);
+  for (const value of [0, -1, Infinity, NaN]) { assert.equal(ergWatts(value), null); assert.equal(targetTime(value, 110), null); }
+});
+
+test('interval totals exclude recovery and cannot become continuous benchmarks', async () => {
+  const { intervalTotals, sessionReview } = await import('../src/training.ts');
+  const intervals = [{ meters: 1000, seconds: 210, restSeconds: 120 }, { meters: 1000, seconds: 220, restSeconds: 0 }];
+  assert.deepEqual(intervalTotals(intervals), { meters: 2000, seconds: 430, restSeconds: 120 });
+  assert.throws(() => intervalTotals([{ meters: 500, seconds: 0, restSeconds: 0 }]));
+  const workout = { ...demoWorkouts()[0], id: 'interval-test', meters: 2000, seconds: 430, intervals };
+  assert.equal(personalBest([workout], 2000), undefined);
+  assert.match(sessionReview(workout, []), /1:45.0.*1:50.0/);
+  assert.doesNotThrow(() => decodeData(JSON.stringify({ ...emptyData, workouts: [workout] })));
+  assert.throws(() => decodeData(JSON.stringify({ ...emptyData, workouts: [{ ...workout, seconds: 550 }] })));
+});
+
+test('week strip handles Sunday and date boundaries', async () => {
+  const { weekDates } = await import('../src/training.ts');
+  assert.deepEqual(weekDates(new Date(2027, 0, 3)), ['2026-12-28', '2026-12-29', '2026-12-30', '2026-12-31', '2027-01-01', '2027-01-02', '2027-01-03']);
+});

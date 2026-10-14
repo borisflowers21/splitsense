@@ -7,14 +7,19 @@ A mobile rowing journal for athletes, built with Expo and React Native for iOS a
 - Opening welcome screen with Log In, Create Account, Google, and Apple options.
 - Polished rowing illustration, floating bottom navigation, improved cards, focus states, and chart scale labels.
 - Animated screen entrances, spring button presses, and a gently floating rowing illustration. Motion respects the device's reduced-motion preference.
-- Development-only DEV toolbar: Next page advances through the preview; the page picker jumps to Welcome, Log In, Create Account, Home, Training Log, Progress, Profile, or Log a Workout. It bypasses only the demo flow and never changes stored workouts. The toolbar is omitted from production builds.
+- Development-only DEV toolbar: Next page advances through the preview; the page picker jumps to Welcome, Log In, Create Account, Home, Training Log, Training Plan, Progress, Profile, or Log a Workout. It bypasses only the demo flow and never changes stored workouts. The toolbar is omitted from production builds.
 - Demo email/password forms, password visibility toggle, and clearly marked social sign-in previews. No authentication details are saved or transmitted; these screens do not create accounts or protect local data. Use Explore the demo to enter the app, or Return to sign-in in Profile.
 
+- Three Home layout previews in the development-only UI Lab; Performance is the default.
+- Plan tab with Calendar, Library and Pace Lab sections, five templates, locally saved schedules and links to logged workouts.
+- Interval logging with separate work/recovery totals and per-repetition splits; interval sessions cannot count as continuous-distance records.
+- Constant-split finish-time and Concept2-equivalent watts calculator.
+- Session reviews compare similar continuous sessions or show fastest/slowest interval splits. These are deterministic summaries, not AI coaching.
 - Home dashboard with weekly sessions, distance, training time, and a personal goal.
 - Erg, water, and strength workout logging with date, duration, effort, and notes.
 - Automatic average split per 500 m, optional stroke rate, and water-session BoatFeel ratings.
 - Filtered training history, session details, and confirmed workout deletion.
-- Exact-distance erg personal bests for 2K, 5K, and 6K, plus recent erg pace history.
+- Continuous exact-distance erg personal bests for 500 m, 2K, 5K, and 6K, plus recent erg pace history.
 - Editable athlete profile and optional, clearly marked example workouts.
 - Device-local persistence. Loading and saving failures are surfaced without overwriting unreadable data.
 
@@ -54,6 +59,8 @@ Training is saved only on the current device/browser, using AsyncStorage. There 
 SplitSense Coach is labeled as planned. This version contains no AI calls, API keys, subscriptions, or checkout. Before adding those features, implement authenticated cloud storage, private per-athlete access, server-side AI requests, and subscription entitlements.
 
 Example sessions are optional and visibly marked. Remove them in Profile; personal workouts remain intact. Compare similar workouts when assessing pace trends.
+
+See [UI scores and RowIQ feature roadmap](docs/product-roadmap.md) for the researched design directions and working versus planned capabilities.
 
 ## Next milestones
 

@@ -4,10 +4,10 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { Entrance, MotionPressable } from './Motion';
 
-export const previewPages = ['welcome', 'login', 'create', 'Home', 'Train', 'Progress', 'Profile', 'Workout'] as const;
+export const previewPages = ['welcome', 'login', 'create', 'Home', 'Train', 'Plan', 'Progress', 'Profile', 'Workout'] as const;
 export type PreviewPage = typeof previewPages[number];
 export type AppPage = Exclude<PreviewPage, 'welcome' | 'login' | 'create'>;
-const titles: Record<PreviewPage, string> = { welcome: 'Welcome', login: 'Log In', create: 'Create Account', Home: 'Home', Train: 'Training Log', Progress: 'Progress', Profile: 'Profile', Workout: 'Log a Workout' };
+const titles: Record<PreviewPage, string> = { welcome: 'Welcome', login: 'Log In', create: 'Create Account', Home: 'Home', Train: 'Training Log', Plan: 'Training Plan', Progress: 'Progress', Profile: 'Profile', Workout: 'Log a Workout' };
 
 export default function DevTools({ page, onNavigate }: { page: PreviewPage; onNavigate: (page: PreviewPage) => void }) {
   const [open, setOpen] = useState(false);
