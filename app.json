@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "name": "SplitSense",
+    "slug": "splitsense",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": { "supportsTablet": true },
+    "android": { "adaptiveIcon": { "backgroundColor": "#F5F7F5" } },
+    "web": { "name": "SplitSense" }
+  }
+}
